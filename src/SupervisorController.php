@@ -204,13 +204,13 @@ class SupervisorController extends Controller
 
     public function info($message)
     {
-        $this->stdout("[" . date('Y-m-d H:i:s') . "] " . $message, Console::FG_BLUE);
+        $this->stdout("[" . date('Y-m-d H:i:s') . "] " . $message . "\n", Console::FG_BLUE);
         Yii::info($message, $this->logCategory);
     }
 
     public function error($message)
     {
-        $this->stderr("[" . date('Y-m-d H:i:s') . "] " . $message, Console::FG_RED);
+        $this->stderr("[" . date('Y-m-d H:i:s') . "] " . $message . "\n", Console::FG_RED);
         Yii::error($message, $this->logCategory);
     }
 }
