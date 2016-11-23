@@ -8,7 +8,7 @@ Linux service.
 Preferred way to install extension is through [Composer](https://getcomposer.org).
 
 ```shell
-$ composer require understeam/yii2-supervisor:~0.1 --prefer-dist
+$ composer require understeam/yii2-supervisor:~0.2 --prefer-dist
 ```
 
 ## Configuration
