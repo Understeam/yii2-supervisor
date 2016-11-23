@@ -1,0 +1,21 @@
+{
+    "name": "understeam/yii2-supervisor",
+    "type": "extension",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Anatoly Rugalev",
+            "email": "anatoly.rugalev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "^2.0",
+        "symfony/process": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "understeam\\supervisor\\": "src"
+        }
+    }
+}
