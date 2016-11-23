@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use Yii;
 use yii\console\Controller;
@@ -24,7 +25,7 @@ class SupervisorController extends Controller
     /**
      * @var string location of `yii` script
      */
-    public $yiiFile = '@root/yii';
+    public $yiiFile;
     /**
      * List of commands in following format:
      * [
@@ -66,6 +67,25 @@ class SupervisorController extends Controller
     private $_processes;
 
     private $_started = false;
+
+    public function init()
+    {
+        if ($this->yiiFile === null) {
+            if (isset($_SERVER['PHP_SELF'])) {
+                $this->yiiFile = realpath($_SERVER['PHP_SELF']);
+            } else {
+                throw new InvalidConfigException("Cannot autodetect `yii` script path.");
+            }
+        }
+        if ($this->phpBinary === null) {
+            if (defined(PHP_BINARY)) {
+                $this->phpBinary = PHP_BINARY;
+            } else {
+                throw new InvalidConfigException("Cannot autodetect PHP binary.");
+            }
+        }
+        parent::init();
+    }
 
     public function actionRun()
     {
@@ -145,7 +165,7 @@ class SupervisorController extends Controller
                         $this->error("Process {$id}-{$i} is down.");
                         if ($process instanceof Process) {
                             $this->error(
-                                  "Command: " . $process->getCommandLine() . "\n"
+                                "Command: " . $process->getCommandLine() . "\n"
                                 . "Exit code: " . $process->getExitCode() . "\n"
                                 . "Error output:\n" . $process->getErrorOutput()
                             );
