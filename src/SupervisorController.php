@@ -1,6 +1,6 @@
 <?php
 
-namespace console\controllers;
+namespace understeam\supervisor;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
